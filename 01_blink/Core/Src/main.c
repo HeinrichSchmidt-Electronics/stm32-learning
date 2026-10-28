@@ -90,7 +90,9 @@ int main(void)
   MX_GPIO_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-
+  uint32_t x = 10;
+  uint32_t *p = &x;
+  *p = 20;
   /* USER CODE END 2 */
 
   /* Infinite loop */
