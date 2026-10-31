@@ -32,10 +32,10 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 #define RCC_AHB1ENR  (*(volatile uint32_t *)0x40023830)
+
 #define GPIOA_MODER  (*(volatile uint32_t *)0x40020000)
 #define GPIOA_ODR    (*(volatile uint32_t *)0x40020014)
-
-#define GPIOC_IDR    (*(volatile uint32_t *) 0x40020810)
+#define GPIOA_BSRR   (*(volatile uint32_t *)0x40020018)
 
 uint8_t was_pressed = 0;
 /* USER CODE END PD */
@@ -108,10 +108,10 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  if (!(GPIOC_IDR & (1 << 13)))
-	      GPIOA_ODR |= (1 << 5);
-	  else
-	      GPIOA_ODR &= ~(1 << 5);
+	  GPIOA_BSRR = (1 << 5);
+	  HAL_Delay(100);
+	  GPIOA_BSRR = (1 << (16+5));
+	  HAL_Delay(900);
 
   }
   /* USER CODE END 3 */
